@@ -1,10 +1,15 @@
 <?php
-class OlympicGames {
+
+declare(strict_types=1);
+
+class OlympicGames
+{
     private $athletes = [];
     private $events = [];
     private $results = [];
 
-    public function processOlympicData($athletesData, $eventsData, $resultsData) {
+    public function processOlympicData($athletesData, $eventsData, $resultsData)
+    {
 
         foreach ($athletesData as $athlete) {
             $this->athletes[] = ['name' => $athlete['name'], 'country' => $athlete['country']];
@@ -18,7 +23,8 @@ class OlympicGames {
             $this->results[] = [
                 'athlete' => $result['athlete'],
                 'event' => $result['event'],
-                'medal' => $result['medal']
+                'medal' => $result['medal'],
+                'country' => $result['country']
             ];
         }
 
@@ -47,10 +53,8 @@ $eventsData = [
 ];
 
 $resultsData = [
-    ['athlete' => 'Usain Bolt', 'event' => '100m Sprint', 'medal' => 'Gold'],
-    ['athlete' => 'Michael Phelps', 'event' => 'Swimming', 'medal' => 'Gold']
+    ['athlete' => 'Usain Bolt', 'country' => 'Jamaica', 'event' => '100m Sprint', 'medal' => 'Gold'],
+    ['athlete' => 'Michael Phelps', 'country' => 'USA', 'event' => 'Swimming', 'medal' => 'Gold']
 ];
 
 $olympics->processOlympicData($athletesData, $eventsData, $resultsData);
-
-?>
