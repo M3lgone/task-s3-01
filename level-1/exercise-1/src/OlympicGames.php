@@ -4,57 +4,31 @@ declare(strict_types=1);
 
 class OlympicGames
 {
-    private $athletes = [];
-    private $events = [];
-    private $results = [];
+    private array $results = [];
 
-    public function processOlympicData($athletesData, $eventsData, $resultsData)
+    public function addResult(Result $result): void
     {
-
-        foreach ($athletesData as $athlete) {
-            $this->athletes[] = ['name' => $athlete['name'], 'country' => $athlete['country']];
-        }
-
-        foreach ($eventsData as $event) {
-            $this->events[] = ['event' => $event['event'], 'date' => $event['date']];
-        }
-
-        foreach ($resultsData as $result) {
-            $this->results[] = [
-                'athlete' => $result['athlete'],
-                'event' => $result['event'],
-                'medal' => $result['medal'],
-                'country' => $result['country']
-            ];
-        }
-
-        echo "Olympic Games Results:\n";
-        foreach ($this->events as $event) {
-            echo "Event: " . $event['event'] . " on " . $event['date'] . "\n";
-            foreach ($this->results as $result) {
-                if ($result['event'] === $event['event']) {
-                    echo "- " . $result['athlete'] . " from " . $result['country'] . " won " . $result['medal'] . "\n";
-                }
-            }
-        }
+        $this->results[] = $result;
     }
+
+    public function showResults(): void
+    {
+        echo "Olympic Games Results:\n";
+        foreach ($this->results as $result) {
+
+            $category = $result->getEvent()->getCategory();
+
+            $athleteName = $result->getAthlete()->getName();
+
+            $country = $result->getAthlete()->getCountry();
+
+            $medal = $result->getMedal()->value;
+
+            echo "Event: {$category}\n";
+
+            echo "- {$athleteName} from {$country} won {$medal}\n";
+        }
+
+    }
+
 }
-
-$olympics = new OlympicGames();
-
-$athletesData = [
-    ['name' => 'Usain Bolt', 'country' => 'Jamaica'],
-    ['name' => 'Michael Phelps', 'country' => 'USA']
-];
-
-$eventsData = [
-    ['event' => '100m Sprint', 'date' => '2024-08-01'],
-    ['event' => 'Swimming', 'date' => '2024-08-02']
-];
-
-$resultsData = [
-    ['athlete' => 'Usain Bolt', 'country' => 'Jamaica', 'event' => '100m Sprint', 'medal' => 'Gold'],
-    ['athlete' => 'Michael Phelps', 'country' => 'USA', 'event' => 'Swimming', 'medal' => 'Gold']
-];
-
-$olympics->processOlympicData($athletesData, $eventsData, $resultsData);
