@@ -1,33 +1,21 @@
 <?php
 
-require_once 'IMachineActions.php';
+declare(strict_types=1);
 
-class WashingMachine implements IMachineActions
+class WashingMachine implements IMachineActions, IWash
 {
-    public function turnOn(): void
+    public function turnOn(): string
     {
-        echo "Washing machine on\n";
+        return "Washing machine on";
     }
 
-    public function turnOff(): void
+    public function turnOff(): string
     {
-        echo "Washing machine off\n";
+        return "Washing machine off";
     }
 
-    public function heat(): void
+    public function wash(): string
     {
-        // Not supported
-        throw new Exception("Heating not supported");
-    }
-
-    public function cool(): void
-    {
-        // Not supported
-        throw new Exception("Cooling not supported");
-    }
-
-    public function wash(): void
-    {
-        echo "Washing clothes\n";
+        return "Washing clothes";
     }
 }

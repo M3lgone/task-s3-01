@@ -1,33 +1,21 @@
 <?php
 
-require_once 'IMachineActions.php';
+declare(strict_types=1);
 
-class ElectricHeater implements IMachineActions
+class ElectricHeater implements IMachineActions, IHeat
 {
-    public function turnOn(): void
+    public function turnOn(): string
     {
-        echo "Heater on\n";
+        return "Heater on";
     }
 
-    public function turnOff(): void
+    public function turnOff(): string
     {
-        echo "Heater off\n";
+        return "Heater off";
     }
 
-    public function heat(): void
+    public function heat(): string
     {
-        echo "Heating the room\n";
-    }
-
-    public function cool(): void
-    {
-        // Not supported
-        throw new Exception("Cooling not supported");
-    }
-
-    public function wash(): void
-    {
-        // Not supported
-        throw new Exception("Washing not supported");
+        return "Heating the room";
     }
 }
