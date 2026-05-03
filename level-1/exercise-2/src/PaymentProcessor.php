@@ -1,16 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
+
 class PaymentProcessor
 {
-    protected $gateway;
+    private PaymentMethod $paymentmethod;
 
-    public function __construct()
+    public function __construct(PaymentMethod $paymentMethod)
     {
-        $this->gateway = new StripePaymentGateway();
+        $this->paymentmethod = $paymentMethod;
     }
 
-    public function procesarPago(float $cantidad): string
+    public function execute(float $amount): string
     {
-        return $this->gateway->sendPayment($cantidad);
+        return $this->paymentmethod->sendPayment($amount);
     }
 }

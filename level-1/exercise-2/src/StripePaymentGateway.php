@@ -1,9 +1,11 @@
-<?php 
+<?php
 
-class StripePaymentGateway
+declare(strict_types=1);
+
+class StripePaymentGateway implements PaymentMethod
 {
     public function sendPayment(float $amount): string
     {
-        return "{$amount} payment processed with Stripe";
+        return "Payment for {$amount} processed with Stripe";
     }
 }

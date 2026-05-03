@@ -1,9 +1,11 @@
 <?php
 
-class PayPalPaymentGateway
+declare(strict_types=1);
+
+class PayPalPaymentGateway implements PaymentMethod
 {
     public function sendPayment(float $amount): string
     {
-        return "{$amount} payment processed by Paypal";
+        return "Payment for {$amount} processed by Paypal";
     }
 }
