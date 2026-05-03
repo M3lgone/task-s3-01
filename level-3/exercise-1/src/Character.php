@@ -1,14 +1,8 @@
 <?php
 
-class Character
-{
-    public function move(): void
-    {
-        echo "The character moves forward.\n";
-    }
+declare(strict_types=1);
 
-    public function attack(): void
-    {
-        echo "The character attacks with a sword.\n";
-    }
+abstract class Character
+{
+    abstract public function move(): string;
 }

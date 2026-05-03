@@ -1,12 +1,20 @@
 <?php
 
-include('classes/Ghost.php');
+declare(strict_types=1);
 
-function doCombat(Character $character)
-{
-    $character->move();
-    $character->attack(); 
-}
+use Dom\CharacterData;
 
-$enemy = new Ghost();
-doCombat($enemy); 
+require_once __DIR__ . '/../src/Character.php';
+require_once __DIR__ . '/../src/IAttacker.php';
+require_once __DIR__ . '/../src/Ghost.php';
+require_once __DIR__ . '/../src/Hero.php';
+
+$characterPlayerHero = new Hero();
+$characterEnemyGhost = new Ghost();
+
+
+echo $characterPlayerHero->move() . PHP_EOL;
+echo $characterPlayerHero->attack() . PHP_EOL;
+
+echo $characterEnemyGhost->move() . PHP_EOL;
+// echo $characterEnemyGhost->attack() . PHP_EOL;

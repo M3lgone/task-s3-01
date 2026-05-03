@@ -1,17 +1,12 @@
 <?php
 
-include('Character.php');
+declare(strict_types=1);
+
 
 class Ghost extends Character
 {
-    public function move(): void
+    public function move(): string
     {
-        echo "The ghost floats silently.\n";
-    }
-
-    public function attack(): void
-    {
-        // Ghosts can't attack in this game
-        throw new Exception("Ghosts cannot attack!");
+        return "The ghost floats silently.";
     }
 }
